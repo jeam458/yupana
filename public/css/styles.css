@@ -1,0 +1,1223 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #e4e7ec;
+
+    background-image: url('/img/fondo3.jpg');
+
+    /* Full height */
+    height: 100%; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+a {
+    color: #000;
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+.list-inline > li {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.text-muted {
+    color: #90939a;
+}
+
+.navbar {
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+}
+
+/*.navbar-header {
+     /*float: left;*/
+    /*padding-left: 15px;
+}*/
+
+/*.navbar-nav {
+    float: left;
+    margin: 0;
+}*/
+
+/*.navbar-nav > li {
+    float: left;
+}*/
+
+.navbar-nav li:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.navbar-nav > li > a:hover {
+    color:#555;
+    float:none;
+    padding: 15px;
+    display:block;
+    background-color: rgba(34, 216, 127, 0.3);
+
+}
+
+
+.navbar-default {
+    color: #fff;
+    /*background: #fff;*/
+    background: transparent;
+}
+
+.navbar-default .navbar-brand {
+    color: #56ec5c;
+    background-color: #ffe939;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #ffe939;
+    background-color: #56ec5c;
+}
+
+.navbar-brand {
+    margin-left: -15px;
+    transition: 0.25s all;
+}
+
+.panel {
+    
+    border-color: #cfd9D7;
+    border-radius: 2px;
+    box-shadow: 0 8px 17px rgba(0, 0, 0, 0.3);
+    
+}
+
+.panel-default > .panel-heading {
+    font-size: 85%;
+    font-weight: bold;
+    color: #444;
+    text-transform: uppercase;
+    background-color: #f6f6f6;
+    border-color: #cfd9db;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.center-form {
+    width: 330px;
+    margin: 12% auto;
+}
+
+.signup-or-separator {
+    position: relative;
+    height: 34px;
+    text-align: center;
+    background: none;
+}
+
+.signup-or-separator hr {
+    width: 90%;
+    margin: -16px auto 10px auto;
+    border-top: 1px solid #dce0e0;
+}
+
+.signup-or-separator .text {
+    display: inline-block;
+    padding: 8px;
+    margin: 0;
+    background-color: #fff;
+}
+
+.has-feedback .form-control-feedback {
+    top: 0;
+    left: 0;
+    width: 46px;
+    height: 46px;
+    line-height: 46px;
+    color: #555;
+}
+
+.password-strength-indicator {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 5px;
+    padding: 0 15px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.password-strength-indicator span {
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin-bottom: 2px;
+    background: #ebeef1;
+    border-radius: 5px;
+}
+
+[class^='ion-'] {
+    font-size: 1.2em;
+}
+
+.has-feedback .form-control {
+    padding-left: 42.5px;
+}
+
+.alert-material {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+    z-index: 1;
+    display: inline-block;
+    min-height: 48px;
+    padding: 13px 24px 12px;
+    font-family: 'Roboto', sans-serif;
+    color: #f1f1f1;
+    cursor: default;
+    background: #323232;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.profile-picture {
+    height: 100px;
+    display: block;
+}
+
+.btn {
+    font-weight: bold;
+    border-radius: 2px;
+    /*box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);*/
+}
+
+.btn-primary {
+    background-color: #4285f4;
+}
+
+.btn-primary:hover {
+    background-color: #3367d6;
+}
+
+.btn-success {
+    background-color: #0f9d58;
+}
+
+.btn-success:hover {
+    background-color: #196c4a;
+}
+
+.btn-danger {
+    background-color: #db4437;
+}
+
+.btn-danger:hover {
+    background-color: #b04c3b;
+}
+
+.btn-group-vertical .btn {
+    margin-bottom: 10px;
+}
+
+.btn-group-vertical > .btn:first-child:not(:last-child) {
+    border-radius: 2px;
+}
+
+.btn-group-vertical > .btn:not(:first-child):not(:last-child) {
+    border-radius: 2px;
+}
+
+.btn-group-vertical > .btn:last-child:not(:first-child) {
+    border-radius: 2px;
+}
+
+.btn-lg {
+    font-size: 14px;
+}
+
+.btn [class^='ion-'] {
+    margin-right: 5px;
+}
+
+.btn .fa {
+    margin-right: 5px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
+}
+
+/*********************
+* Social Buttons
+*********************/
+
+.btn-google-plus {
+    color: #fff;
+    background-color: #dd4b39;
+    border: 1px solid #d54331;
+}
+
+.btn-google-plus:hover,
+.btn-google-plus:focus {
+    color: #fff;
+    background-color: #cb3927;
+}
+
+.btn-facebook {
+    color: #fff;
+    background-color: #3b5998;
+    border: 1px solid #335190;
+}
+
+.btn-facebook:hover,
+.btn-facebook:focus {
+    color: #fff;
+    background-color: #294786;
+}
+
+.btn-linkedin {
+    color: #fff;
+    background-color: #007bb6;
+    border: 1px solid #0073ae;
+}
+
+.btn-linkedin:hover,
+.btn-linkedin:focus {
+    color: #fff;
+    background-color: #0069a4;
+}
+
+.btn-twitter {
+    color: #fff;
+    background-color: #00aced;
+    border: 1px solid #009fdb;
+}
+
+.btn-twitter:hover,
+.btn-twitter:focus {
+    color: #fff;
+    background-color: #0090c7;
+}
+
+.btn-foursquare {
+    color: #fff;
+    background-color: #f94877;
+    border: 1px solid #f8215a;
+}
+
+.btn-foursquare:hover,
+.btn-foursquare:focus {
+    color: #fff;
+    background-color: #f71752;
+}
+
+.btn-github {
+    color: #fff;
+    background-color: #444;
+    border: 1px solid #3b3b3b;
+}
+
+.btn-github:hover,
+.btn-github:focus {
+    color: #fff;
+    background-color: #303030;
+}
+
+.btn-instagram {
+    color: #fff;
+    background-color: #3f729b;
+}
+
+.btn-instagram:hover,
+.btn-instagram:focus {
+    color: #fff;
+    background-color: #305777;
+}
+
+.btn-yahoo {
+    color: #fff;
+    background-color: #720e9e;
+}
+
+.btn-yahoo:hover,
+.btn-yahoo:focus {
+    color: #fff;
+    background-color: #600e85;
+}
+
+.btn-live {
+    color: #fff;
+    background-color: #2672ec;
+}
+
+.btn-live:hover,
+.btn-live:focus {
+    color: #fff;
+    background-color: #125acd;
+}
+
+.btn-twitch {
+    color: #fff;
+    background-color: #6441a5;
+}
+
+.btn-twitch:hover,
+.btn-twitch:focus {
+    color: #fff;
+    background-color: #7550ba;
+}
+
+/*********************
+* Animations
+*********************/
+
+.fadeZoom.ng-enter {
+    -webkit-animation-duration: 0.6s, 0.2s;
+    -moz-animation-duration: 0.2s, 0.2s;
+    -ms-animation-duration: 0.2s, 0.2s;
+    animation-duration: 0.2s, 0.2s;
+    -webkit-animation-name: fadeIn, zoomIn;
+    -moz-animation-name: fadeIn, zoomIn;
+    -ms-animation-name: fadeIn, zoomIn;
+    animation-name: fadeIn, zoomIn;
+}
+
+.fadeZoomFadeDown.ng-enter {
+    -webkit-animation-duration: 0.2s, 0.2s;
+    -moz-animation-duration: 0.2s, 0.2s;
+    -ms-animation-duration: 0.2s, 0.2s;
+    animation-duration: 0.2s, 0.2s;
+    -webkit-animation-name: fadeIn, zoomIn;
+    -moz-animation-name: fadeIn, zoomIn;
+    -ms-animation-name: fadeIn, zoomIn;
+    animation-name: fadeIn, zoomIn;
+}
+
+.fadeZoomFadeDown.ng-leave {
+    -webkit-animation: fadeOutDown 0.2s;
+    -moz-animation: fadeOutDown 0.2s;
+    -ms-animation: fadeOutDown 0.2s;
+    animation: fadeOutDown 0.2s;
+}
+
+@-webkit-keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(0.8, 0.8, 0.8);
+        -moz-transform: scale3d(0.8, 0.8, 0.8);
+        -ms-transform: scale3d(0.8, 0.8, 0.8);
+        transform: scale3d(0.8, 0.8, 0.8);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(0.8, 0.8, 0.8);
+        -moz-transform: scale3d(0.8, 0.8, 0.8);
+        -ms-transform: scale3d(0.8, 0.8, 0.8);
+        transform: scale3d(0.8, 0.8, 0.8);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/*Spinner CSS*/
+.page-load-spinner {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgb(255, 255, 255);
+}
+
+.sk-folding-cube {
+    top: 40%;
+    margin: 20px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+.sk-folding-cube .sk-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.sk-folding-cube .sk-cube:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: darkcyan;
+    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+    animation: sk-foldCubeAngle 2.4s infinite linear both;
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.sk-folding-cube .sk-cube2 {
+    -webkit-transform: scale(1.1) rotateZ(90deg);
+    transform: scale(1.1) rotateZ(90deg);
+}
+
+.sk-folding-cube .sk-cube3 {
+    -webkit-transform: scale(1.1) rotateZ(180deg);
+    transform: scale(1.1) rotateZ(180deg);
+}
+
+.sk-folding-cube .sk-cube4 {
+    -webkit-transform: scale(1.1) rotateZ(270deg);
+    transform: scale(1.1) rotateZ(270deg);
+}
+
+.sk-folding-cube .sk-cube2:before {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.sk-folding-cube .sk-cube3:before {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+.sk-folding-cube .sk-cube4:before {
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+
+@-webkit-keyframes sk-foldCubeAngle {
+    0%, 10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%, 75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%, 100% {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-foldCubeAngle {
+    0%, 10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%, 75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%, 100% {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+/*********************
+* My Travles
+*********************/
+.post {
+    background-color: #FFF;
+    overflow: hidden;
+    box-shadow: 0 0 1px #CCC;
+    height: auto;
+}
+
+.post .content {
+    padding: 15px;
+}
+
+.post .author {
+    font-size: 11px;
+    color: #737373;
+    padding: 25px 30px 20px;
+}
+
+.post .post-img-content {
+    margin-top: -20px;
+    min-height: 200px;
+    padding-top: 50px;
+    /*height: 196px;*/
+    /* position: relative;*/
+}
+
+.post .post-img-content img {
+    /* position: absolute;*/
+}
+
+.post .post-title {
+    /*display: table-cell;
+    vertical-align: bottom;*/
+    z-index: 2;
+    /*position: relative;*/
+}
+
+.post .post-title b {
+    background-color: rgba(51, 51, 51, 0.58);
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #FFF;
+    padding: 10px 15px;
+    margin-top: 5px;
+}
+
+#map {
+    height: 300px;
+    /*width: 500px;
+    box-shadow: 3px 3px 10px gray;
+    float: left;
+    border: 5px solid white;
+    border-radius: 10px;
+    margin-right: 20px;*/
+}
+/*#repeat {
+    display: inline;
+}*/
+
+/*
+#country_container {
+    width: 1000px;
+    margin: 13px 3px 3px 0px;
+    text-align: center;
+    width: 85px;
+    padding: 4px;
+    display: inline-table;
+    color: white;
+    background-color: black;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 13px;
+}
+
+#country_container:hover {
+    box-shadow: 0px 0px 10px black;
+    background-color: gray;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+#names {
+    cursor: pointer;
+}*/
+/* numbered buttons */
+#status-buttons {
+}
+
+#status-buttons a {
+    color: grey;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+    text-align: center;
+}
+
+#status-buttons a:hover {
+    text-decoration: none;
+}
+
+/* active buttons */
+#status-buttons a.active {
+    color:darkcyan;
+    text-decoration: none;
+    border-bottom: 3px solid darkcyan;
+}
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave {
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    transition: 0.5s all ease;
+    -moz-transition: 0.5s all ease;
+    -webkit-transition: 0.5s all ease;
+}
+
+/* enter animation */
+#form-views.ng-enter {
+    -webkit-animation: slideInRight 0.5s both ease;
+    -moz-animation: slideInRight 0.5s both ease;
+    animation: slideInRight 0.5s both ease;
+}
+
+/* leave animation */
+#form-views.ng-leave {
+    -webkit-animation: slideOutLeft 0.5s both ease;
+    -moz-animation: slideOutLeft 0.5s both ease;
+    animation: slideOutLeft 0.5s both ease;
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+    to {
+        transform: translateX(-200%);
+    }
+}
+
+@-moz-keyframes slideOutLeft {
+    to {
+        -moz-transform: translateX(-200%);
+    }
+}
+
+@-webkit-keyframes slideOutLeft {
+    to {
+        -webkit-transform: translateX(-200%);
+    }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(200%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@-moz-keyframes slideInRight {
+    from {
+        -moz-transform: translateX(200%);
+    }
+    to {
+        -moz-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes slideInRight {
+    from {
+        -webkit-transform: translateX(200%);
+    }
+    to {
+        -webkit-transform: translateX(0);
+    }
+}
+
+/*
+loader css animation*/
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.loading-bar {
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    border-radius: 4px;
+    animation: loading 1s ease-in-out infinite;
+}
+.loading-bar:nth-child(1) {
+    background-color: #3498db;
+    animation-delay: 0s;
+}
+.loading-bar:nth-child(2) {
+    background-color: #c0392b;
+    animation-delay: 0.09s;
+}
+.loading-bar:nth-child(3) {
+    background-color: #f1c40f;
+    animation-delay: .18s;
+}
+.loading-bar:nth-child(4) {
+    background-color: #27ae60;
+    animation-delay: .27s;
+}
+
+@keyframes loading {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1, 2.2);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.ng-hide {
+    opacity:0;
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    /* transform: scale(0.8); */
+}
+
+
+.map-container {
+    padding-top: 5%;
+}
+
+#googleMap {
+    width: 400px;
+    height:400px;
+}
+
+
+
+
+
+.multiSelect {
+    overflow: auto;
+    padding-bottom: 10px;
+}
+.multiSelect .select {
+    margin-right: 20px;
+    float: left;
+}
+.multiSelect .text {
+    clear: both;
+    font-size: 11px;
+}
+.multiSelect label.control-label::after {
+    content: ":";
+}
+.multiSelect label.checkbox {
+    margin-bottom: 0;
+}
+.btn.mover {
+    display: block;
+    margin-top: 25px;
+    vertical-align: top;
+}
+.btn.mover.left {
+    padding: 6px 8px 6px 6px;
+}
+.btn.mover.right {
+    margin-top: 5px;
+    padding: 6px 7px;
+}
+.buttons.stacked .btn.mover {
+    margin: 0 0 10px 0;
+}
+.btn.mover.left i, .btn.mover.right i {
+    margin: 0;
+}
+
+/* demo css */
+ul.detail li {
+    list-style-type: disc;
+}
+.input-error {
+    color:#b94a48;
+}
+
+
+
+/*!
+ * ui-select
+ * http://github.com/qwiglydee/ui-select
+ * Version: 0.13.2.q1 - 2015-10-15T02:15:13.639Z
+ * License: MIT
+ */
+
+
+/* Style when highlighting a search. */
+.ui-select-highlight {
+  font-weight: bold;
+}
+
+.ui-select-offscreen {
+  clip: rect(0 0 0 0) !important;
+  width: 1px !important;
+  height: 1px !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  outline: 0 !important;
+  left: 0px !important;
+  top: 0px !important;
+}
+
+
+.ui-select-choices-row:hover {
+  background-color: #f5f5f5;
+}
+
+/* Select2 theme */
+
+/* Mark invalid Select2 */
+.ng-dirty.ng-invalid > a.select2-choice {
+    border-color: #D44950;
+}
+
+.select2-result-single {
+  padding-left: 0;
+}
+
+.select2-locked > .select2-search-choice-close{
+  display:none;
+}
+
+.select-locked > .ui-select-match-close{
+    display:none;
+}
+
+body > .select2-container.open {
+  z-index: 9999; /* The z-index Select2 applies to the select2-drop */
+}
+
+/* Handle up direction Select2 */
+.ui-select-container[theme="select2"].direction-up .ui-select-match {
+    border-radius: 4px; /* FIXME hardcoded value :-/ */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.ui-select-container[theme="select2"].direction-up .ui-select-dropdown {
+    border-radius: 4px; /* FIXME hardcoded value :-/ */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    border-top-width: 1px;  /* FIXME hardcoded value :-/ */
+    border-top-style: solid;
+
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+
+    margin-top: -4px; /* FIXME hardcoded value :-/ */
+}
+.ui-select-container[theme="select2"].direction-up .ui-select-dropdown .select2-search {
+    margin-top: 4px; /* FIXME hardcoded value :-/ */
+}
+.ui-select-container[theme="select2"].direction-up.select2-dropdown-open .ui-select-match {
+    border-bottom-color: #5897fb;
+}
+
+/* Selectize theme */
+
+/* Helper class to show styles when focus */
+.selectize-input.selectize-focus{
+  border-color: #007FBB !important;
+}
+
+/* Fix input width for Selectize theme */
+.selectize-control > .selectize-input > input {
+  width: 100%;
+}
+
+/* Fix dropdown width for Selectize theme */
+.selectize-control > .selectize-dropdown {
+  width: 100%;
+}
+
+/* Mark invalid Selectize */
+.ng-dirty.ng-invalid > div.selectize-input {
+    border-color: #D44950;
+}
+
+/* Handle up direction Selectize */
+.ui-select-container[theme="selectize"].direction-up .ui-select-dropdown {
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+
+    margin-top: -2px; /* FIXME hardcoded value :-/ */
+}
+
+/* Bootstrap theme */
+
+/* Helper class to show styles when focus */
+.btn-default-focus {
+  color: #333;
+  background-color: #EBEBEB;
+  border-color: #ADADAD;
+  text-decoration: none;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.ui-select-bootstrap .ui-select-toggle {
+  position: relative;
+}
+
+.ui-select-bootstrap .ui-select-toggle > .caret {
+  position: absolute;
+  height: 10px;
+  top: 50%;
+  right: 10px;
+  margin-top: -2px;
+}
+
+/* Fix Bootstrap dropdown position when inside a input-group */
+.input-group > .ui-select-bootstrap.dropdown {
+  /* Instead of relative */
+  position: static;
+}
+
+.input-group > .ui-select-bootstrap > input.ui-select-search.form-control {
+  border-radius: 4px; /* FIXME hardcoded value :-/ */
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.input-group > .ui-select-bootstrap > input.ui-select-search.form-control.direction-up {
+  border-radius: 4px !important; /* FIXME hardcoded value :-/ */
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.ui-select-bootstrap > .ui-select-match > .btn{
+  /* Instead of center because of .btn */
+  text-align: left !important;
+}
+
+.ui-select-bootstrap > .ui-select-match > .caret {
+  position: absolute;
+  top: 45%;
+  right: 15px;
+}
+
+/* See Scrollable Menu with Bootstrap 3 http://stackoverflow.com/questions/19227496 */
+.ui-select-bootstrap > .ui-select-choices {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+  margin-top: -1px;
+}
+
+body > .ui-select-bootstrap.open {
+  z-index: 1000; /* Standard Bootstrap dropdown z-index */
+}
+
+.ui-select-multiple.ui-select-bootstrap {
+  height: auto;
+  padding: 3px 3px 0 3px;
+}
+
+.ui-select-multiple.ui-select-bootstrap input.ui-select-search {
+  background-color: transparent !important; /* To prevent double background when disabled */
+  border: none;
+  outline: none;
+  height: 1.666666em;
+  margin-bottom: 3px;
+}
+
+.ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
+  font-size: 1.6em;
+  line-height: 0.75;
+}
+
+.ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
+  outline: 0;
+  margin: 0 3px 3px 0;
+}
+
+.ui-select-multiple .ui-select-match-item {
+  position: relative;
+}
+
+.ui-select-multiple .ui-select-match-item.dropping-before:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  height: 100%;
+  margin-right: 2px;
+  border-left: 1px solid #428bca;
+}
+
+.ui-select-multiple .ui-select-match-item.dropping-after:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  margin-left: 2px;
+  border-right: 1px solid #428bca;
+}
+
+.ui-select-bootstrap .ui-select-choices-row>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+.ui-select-bootstrap .ui-select-choices-row>a:hover, .ui-select-bootstrap .ui-select-choices-row>a:focus {
+    text-decoration: none;
+    color: #262626;
+    background-color: #f5f5f5;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active>a {
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+    background-color: #428bca;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.disabled>a,
+.ui-select-bootstrap .ui-select-choices-row.active.disabled>a {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #fff;
+}
+
+/* fix hide/show angular animation */
+.ui-select-match.ng-hide-add,
+.ui-select-search.ng-hide-add {
+    display: none !important;
+}
+
+/* Mark invalid Bootstrap */
+.ui-select-bootstrap.ng-dirty.ng-invalid > button.btn.ui-select-match {
+    border-color: #D44950;
+}
+
+/* Handle up direction Bootstrap */
+.ui-select-container[theme="bootstrap"].direction-up .ui-select-dropdown {
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
+}
+
+
+ @media (min-width: 768px) {
+      .modal-xl {
+        width: 100%;
+       max-width:1200px;
+      }
+    }
+
+/*#googleMap {
+    width: 357px;
+    height:357px;
+}*/
+#googleMap1{
+    position:relative;
+    padding-bottom:60%; /* 16:9 56.25% */
+    padding-top:25px;
+    height:0; 
+    max-width:100%;
+    margin:0 auto;
+}
+#googleMap2{
+    position:relative;
+    padding-bottom:60%; /* 16:9 56.25% */
+    padding-top:25px;
+    height:0; 
+    max-width:100%;
+    margin:0 auto;
+}
+
+#googleMap{
+    position:relative;
+    padding-bottom:60%; /* 16:9 56.25% */
+    padding-top:25px;
+    height:0; 
+    max-width:100%;
+    margin:0 auto;
+}
+
+
+.map {
+  height: 400px;
+}
+ 
+/* 
+Fixes Bootstrap issues with Google Maps
+see http://stackoverflow.com/a/9170756 
+*/
+.map img { 
+  max-width: none;
+}
+ 
+.person-list {
+  overflow-y: scroll;
+  height: 150px;
+}
+
+
+[gm-info-window] {
+  display: none;
+}
+ 
+.map [gm-info-window] {
+  display: block;
+}
+
+
+
+

@@ -1,0 +1,26 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper" style="margin-top: -25px;">
+    <ul class="sidebar">
+      <li class="sidebar-main">
+        <a ng-click="toggleSidebar()">
+          <!--<img src="logo-andes.png" class="img-circle" height=43px; width=43px>-->
+          Menu
+          <span class="menu-icon glyphicon glyphicon-transfer"></span>
+        </a>
+      </li>
+      <li class="sidebar-title"><span>Configuracion</span></li>
+      <li  class="sidebar-list">
+        <a ui-sref="#especies">Mi perfil <span class="menu-icon fa fa-user"></span></a>
+        <a ui-sref="dashboard.clientes">Clientes <span class="menu-icon fa fa-users"></span></a>
+        <a ui-sref="dashboard.poliza">Polizas <span class="menu-icon fa fa-gavel"></span></a>
+        <a ui-sref="dashboard.productos">Productos <span class="menu-icon fa fa-suitcase"></span></a>
+        <a ui-sref="dashboard.aseguradora">Compañías <span class="menu-icon fa fa-university"></span></a>
+        <a ui-sref="dashboard.alta">tareas <span class="menu-icon fa fa-bullhorn"></span></a>
+        <a ui-sref="dashboard.signup">Nuevo Personal <span class="menu-icon fa fa-user"></span></a>
+      </li>
+    </ul>
+  </div>
+  <!-- End Sidebar -->
+  <div ui-view="dashboardContent"></div>
+</div>

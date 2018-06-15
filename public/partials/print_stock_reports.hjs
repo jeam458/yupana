@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>GTS Inventory Manager</title>
+  <link rel="stylesheet" href="/css/app.css"/>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/datepicker.css"/>
+
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Grace Inventory Printer Friendly</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+                    <h4 >Grace Technical Services Stock Report For the Period From {{printStartDate}} to {{printEndDate}}</h4>
+                
+                <div class="panel-body">
+
+                    <table id="table" class="table table-bordered">
+                        <thead>
+                            <th>Product</th>
+                            <th>In</th>
+                            <th>Out</th>
+                        </thead>
+                        <tbody>
+                            {{#products}}
+                            <tr>
+                                <td>{{product_name}}</td>
+                                <td>{{qtyIn}}</td>
+                                <td>{{qtyOut}}</td>
+                            </tr>
+                            {{/products}}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<div class="container col-md-12 col-md-offset-0">
+
+<div class="col-sm-3 ">
+  <button  class="btn btn-success btn-block" data-toggle="modal" data-target="#addEtnoModal" ng-click="openAddModal()">Transecto</button>
+  
+</div><br><br><br>
+<div class="row">
+  <div class="col-lg-12">
+    
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h3 class="panel-title">Transectos</h3>
+
+      </div>
+      
+      <div class="panel-body">
+
+        <div class="well" >
+             
+          <form class="form form-inline" role="form">
+            <div class="form-group input-group-sm">
+              <label for="especies">Altitud</label>
+              <select id="especies" ng-model="filter.altitud" class="form-control">
+                <option value="All" selected>All</option>
+                <option ng-repeat="p in transectos" value="{{p.altitudI}}">{{p.altitudI}}</option>
+              </select>
+            </div>
+            <!--<div class="form-group input-group-sm">
+              <label for="customer">Customer</label>
+              <select id="customer" ng-model="filter.customer_id" class="form-control">
+                <option selected="selected" value="All">All</option>
+                <option ng-repeat="c in customers" value="{{c._id}}">{{c.customer_name}}</option>
+              </select>
+            </div>-->
+            <div class="form-group input-group-sm">
+              <label>Desde</label>
+              <p class="input-group input-group-sm">
+                <input ng-model = "filter.startDate" class="form-control" data-date-format="mm/dd/yyyy" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFilterStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+
+            <div class="input-group input-group-sm">
+              <label>Hasta</label>
+              <p class="input-group input-group-sm">
+                <input ng-model = "filter.endDate" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="endOpened" ng-required="true" close-text="Close">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFilterEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            <button class="btn btn-info" ng-click="filterRecords()">Filtrar</button>
+          </form>
+        </div>
+        <div class="loading" ng-show="isProfileLoading">
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+      <div class="loading-bar"></div>
+        </div> 
+        <div>
+          <p ng-show="transectos.length==0" class="text-danger">no tenemos ningun transecto</p>
+        </div>
+        <div ng-show="transectos.length!=0">
+          <table id="transectos_table" ng-table class="table table-bordered table-hover table-striped table-condensed">
+           <thead>
+             <th>Fecha</th>
+             <th>Colector</th>
+             <th>Posición Incial</th>
+             <th>Posición Final</th>
+             <th>Editar</th>
+             <th>Eliminar</th>
+             <!--<th>Especie</th>
+             <th>Coordenadas</th>
+             <th>Editar</th>
+             <th>Eliminar</th>-->
+           </thead>
+           <tbody>
+            <tr ng-repeat = "tran in transectos">
+              <td >{{tran.fecha.substring(0, 10)}}</td>
+              <td>{{tran.colector}}</td>
+              <td>{{tran.latI}}, {{tran.lngI}}</td>
+              <td>{{tran.latF}}, {{tran.lngF}}</td>
+              <td><button class="btn btn-warning" data-toggle="modal" data-target="#addEtnoModal" ng-click="procesaEtno(tran)">Editar</button></td>
+              <td>
+                <button class="btn btn-danger" ng-click="deleteTrans(tran)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal --> 
+<div  class="modal fade " id="addEtnoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>     
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{Mensaje}}</h3>
+            </div>
+            <div class="panel-body">  
+                <div class="row">
+                <div class="col-md-6 col-md-offset-0"> 
+                  <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                  <h3 class="panel-title">UBICACIÓN INICIAL</h3>
+                  </div>                   
+                  
+	                	<div class="form-group">
+	                		<div id="googleMap1"></div>
+	                	</div>
+                        <button  class="btn btn-success btn-block" ng-click="posicioninicial()">borrar ubicacion inicial</button>
+                  <div class="panel-heading"> 
+                  <h3 class="panel-title">GENERAL</h3>
+                  </div> 
+                  <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label" >Zona UTM Inicial</label>
+                    <input class="form-control" placeholder="Zona UTM"  ng-model="transecto.utmZonaI" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Coordenada X UTM Inicial</label>
+                    <input type="Number" class="form-control" placeholder="Coordenada X UTM"  ng-model="transecto.utmXI" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Coordenada Y UTM Inicial</label>
+                    <input type="Number" class="form-control" placeholder="Coordenada Y UTM"  ng-model="transecto.utmYI" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Altitud Inicial</label>
+                    <input type="Number" class="form-control" placeholder="Altitud"  ng-model="transecto.altitudI" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Temperatura Inicial</label>
+                    <input type="text" class="form-control" placeholder="Temperatura"  ng-model="transecto.temperaturaI" required>
+                </div>
+
+                
+                </div>
+                </div>
+                </div>
+
+                 <div class="col-md-6 col-md-offset-0"> 
+                  <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                  <h3 class="panel-title">UBICACIÓN FINAL</h3>
+                  </div>                   
+                  
+	                	<div class="form-group">
+	                		<div id="googleMap2"></div>
+	                	</div>
+                         <button  class="btn btn-success btn-block" ng-click="posicionfinal()">borrar ubicacion final</button>
+                  <div class="panel-heading"> 
+                  <h3 class="panel-title">GENERAL</h3>
+                  </div> 
+                  <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label" >Zona UTM Final</label>
+                    <input class="form-control" placeholder="Zona UTM"  ng-model="transecto.utmZonaF" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Coordenada X UTM Final</label>
+                    <input type="Number" class="form-control" placeholder="Coordenada X UTM"  ng-model="transecto.utmXF" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Coordenada Y UTM Final</label>
+                    <input type="Number" class="form-control" placeholder="Coordenada Y UTM"  ng-model="transecto.utmYF" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Altitud Final</label>
+                    <input type="Number" class="form-control" placeholder="Altitud"  ng-model="transecto.altitudF" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Temperatura Final</label>
+                    <input type="text" class="form-control" placeholder="Temperatura"  ng-model="transecto.temperaturaF" required>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                 
+                 <div class="col-md-4 col-md-offset-0">  
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                 <h3 class="panel-title">DATOS GENERALES</h3>
+                </div>
+                <div class="panel-body">
+                 
+                 <div class="form-group">
+                    <label class="control-label" >Colector</label>
+                    <input type="text" class="form-control" placeholder="Colector"  ng-model="transecto.colector" required>
+                </div>
+
+
+                <div class="form-group input-group-sm">
+                 <label class="control-label">Fecha de colecta</label>
+                 <p class="input-group input-group-sm">
+                <input ng-model = "transecto.fecha" class="form-control" data-date-format="mm/dd/yyyy" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFilterStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+               </p>
+              </div>
+
+              <div class="form-group">
+                <label>Imagen</label>
+                <label for="transecto._attachments">Seleccione imagen</label>
+       
+                <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" />
+                <table class="table table-bordered table-striped">
+                   <tr>
+                     <!--<th>base64</th>-->
+                   <th>imagen (jpg)</th>
+                   </tr>
+                   <tr ng-show="img">
+                     <!--<td>{{img.substring(22)}}</td>-->
+                     <td><img class="thumb" ng-src="{{img}}" height=60px; width=80px/></td>
+                   </tr>
+                   <tr>
+                     <td colspan="1" ng-show="!img">
+                       <small color="red"><i >Para poder agregar debe selccionar una imagen en formato jpg menos a 1.2 Mb.</i></small>
+                     </td>
+                   </tr>
+                 </table>
+              </div>
+                </div>
+                </div>
+                 </div>
+
+                
+
+                <div class="col-md-8 col-md-offset-0">  
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                 <h3 class="panel-title">DETALLE DE TRANSECTO</h3>
+                </div>
+                <div class="panel-body">
+                   <div class="form-group">
+                    <label>Especie</label>
+                    <select  class="form-control" required ng-model="especiee" ng-click="nombrecomun(especiee)" ng-options="especie  as especie.especie_nombrecientifico for especie in especies">
+                    </select>
+                     <input class="form-control" placeholder="nombre científico" ng-show="conteoDetalle.ncientifico"  ng-model="conteoDetalle.ncientifico" disabled>
+                     <input class="form-control" placeholder="nombre común" ng-show="conteoDetalle.ncomun"  ng-model="conteoDetalle.ncomun" disabled>
+                    </div>
+                
+                   <div class="form-group">
+                    <label>Conteo</label>
+                      <input type="Number" class="form-control" placeholder="Conteo"  ng-model="conteoDetalle.conteo">
+                   </div>
+                   <div class="form-group">
+                    <label>DAP</label>
+                      <input type="text" class="form-control" placeholder="DAP"  ng-model="conteoDetalle.dap">
+                   </div>
+                   <div class="form-group">
+                    <label>Ancho Mayor</label>
+                      <input type="Number" class="form-control" placeholder="Ancho Mayor"  ng-model="conteoDetalle.anchoMayor">
+                   </div>
+                   <div class="form-group">
+                    <label>Ancho Menor</label>
+                      <input type="Number" class="form-control" placeholder="Ancho Menor"  ng-model="conteoDetalle.anchoMenor">
+                   </div>
+                  <div class="form-group">
+                  <button class="btn btn-primary" id="addBtn" ng-click="adddetalle(conteoDetalle)"   ng-show="showAddBtn" ng-disabled="!conteoDetalle.ncientifico">Agregar</button>
+                  <button class="btn btn-info" id="updateBtn" ng-click="modificar(conteoDetalle)"   ng-show="showUpdateBtn">Actualizar</button>
+                  <!--<button class="btn btn-info" id="clearBtn" ng-click="eliminar(ParteUsada)" ng-show="showDeleteBtn">Eliminar</button>-->
+                  <button class="btn btn-default" id="closeBtn" ng-click="cancelar()">Cancelar</button>
+                  </div>
+                 
+                  <table id="detalleconteo" class="table table-bordered table-responsive ">
+                  <thead>
+                    <tr class="success">
+                           <th>Nombre Científico</th>
+                           <th>Nombre Común</th>
+                           <th>Conteo</th>
+                           <th>DAP</th>
+                           <th>Ancho Mayor</th>
+                           <th>anchoMenor</th>
+                           <th>Editar</th>
+                           <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat = "detalle in detalleTransecto | orderBy:'detalle.ncientifico' |filter:searchText">
+                            <td>{{detalle.ncientifico}}</td>
+                            <td>{{detalle.ncomun}}</td>
+                            <td>{{detalle.conteo}}</td>
+                            <td>{{detalle.dap}}</td>
+                            <td>{{detalle.anchoMayor}}</td>
+                            <td>{{detalle.anchoMenor}}</td>
+                            <!--<td><img ng-src="data:image/jpeg;base64,{{especie._attachments["character.jpg"].length}}" data-err-src="images/png/avatar.png"/></td>-->
+                           <!-- <td>{{especie.especie_imagen}}</td>-->
+                            <td><button class="btn btn-warning" ng-click="procesaformaU(detalle)">Editar</button></td>
+                            <td>
+                              <button class="btn btn-danger" ng-click="eliminar(detalle)">Eliminar</button>
+                              <!--<input type="submit" value="Eliminar" class="btn btn-xs btn-danger" ng-click="deleteEspecie(especie)">-->
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" ng-show="detalleTransecto.length==0">
+                          <small><i>no exite ningun detalle del transecto!</i></small>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                
+            </div>
+             <div class="modal-footer">
+                 <input value="Agregar" type="submit" class="btn btn-primary" ng-click="saveTransecto()" data-dismiss="modal" ng-show="showAddBtn1" ng-disabled="!transecto.fecha">
+                 <input value="Actualizar" type="submit" class="btn btn-info" ng-click="actualizarEtno()" data-dismiss="modal" ng-show="showUpdateBtn1">
+                 <input value="cerrar" type="submit" class="btn btn-primary" data-dismiss="modal" >
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

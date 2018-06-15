@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="tableExport.js"></script>
+    <script src="JqueryBase64.js"></script>
+    <script src="html2canvas.js"></script>
+    <script src="base64.js"></script>
+    <script src="Jspdf.js"></script>
+    <script src="sprintf.js"></script>
+    <meta charset="utf-8" />
+   </head>
+<body>
+<div ng-controller="myCtrl">
+    <div class="container">
+        <br/><br/>
+
+        <div class="btn-group">
+           <h2>Table export</h2>
+    
+            <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
+            <ul class="dropdown-menu " role="menu">
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'json', escape: 'false' });"> <img src='../content/image/icons/json.png' width='24px'> JSON</a></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'json', escape: 'false', ignoreColumn: '[2,3]' });"> <img src='../content/image/icons/json.png' width='24px'> JSON (ignoreColumn)</a></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'json', escape: 'true' });"> <img src='../content/image/icons/json.png' width='24px'> JSON (with Escape)</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'xml', escape: 'false' });"> <img src='../content/image/icons/xml.png' width='24px'> XML</a></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'sql' });"> <img src='../content/image/icons/sql.png' width='24px'> SQL</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'csv', escape: 'false' });"> <img src='../content/image/icons/csv.png' width='24px'> CSV</a></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'txt', escape: 'false' });"> <img src='../content/image/icons/txt.png' width='24px'> TXT</a></li>
+                <li class="divider"></li>
+
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'excel', escape: 'false' });"> <img src='../content/image/icons/xls.png' width='24px'> XLS</a></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'doc', escape: 'false' });"> <img src='../content/image/icons/word.png' width='24px'> Word</a></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'powerpoint', escape: 'false' });"> <img src='../content/image/icons/ppt.png' width='24px'> PowerPoint</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'png', escape: 'false' });"> <img src='../content/image/icons/png.png' width='24px'> PNG</a></li>
+                <li><a href="#" onClick="$('#customers').tableExport({ type: 'pdf', pdfFontSize: '7', escape: 'false' });"> <img src='../content/image/icons/pdf.png' width='24px'> PDF</a></li>
+            </ul>
+        </div>
+        <br/>
+        <table id="customers" class="table table-striped">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td>{{item.FirstName}}</td>
+                <td>{{item.LastName}}</td>
+                <td>{{item.Address}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+    <script type="text/javascript">
+        var myAppModule = angular.module('myApp', []);
+        myAppModule.controller('myCtrl', function ($scope) {
+            $scope.exportData = function () {
+                $('#customers').tableExport({ type: 'json', escape: 'false' });
+            };
+            $scope.items = [
+                {
+                    "FirstName": "Prathap",
+                    "LastName": "Kudupu",
+                    "Address": "Near Anjana Beach"
+                },
+                {
+                    "FirstName": "Deepak",
+                    "LastName": "Dsouza",
+                    "Address": "Near Nariman Point"
+                }
+            ];
+
+        });
+
+
+</script>
+  

@@ -1,0 +1,52 @@
+<div class="col-md-10">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Transaction Reports</h3>
+        </div>
+        <div class="panel-body">
+            <div class="well">
+
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select>
+                            <option>All</option>
+                            <option>In</option>
+                            <option>Out</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Customer</label>
+                        <select>
+                            <option value="0">All</option>
+                            <option ng-repeat="c in customers" value="{{c._id}}">{{c.customer_name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>From</label>
+                        <p class="input-group">
+                            <input ng-model = "startDate" class="form-control" data-date-format="mm/dd/yyyy" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="openStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label>To</label>
+                        <p class="input-group">
+                            <input ng-model = "endDate" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="endOpened" ng-required="true" close-text="Close">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="openEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <div class=form-group>
+                        <input type="submit" value="Load" class="btn btn-primary" ng-click="load()">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="container col-md-12 col-md-offset-0">
+    <div class="panel panel-default panel-body" style="min-height: 400px;">
+        <legend><i class="ion-leaf" style="margin: -2px 5px 10px 10px;float: left; "></i>Especies</legend>
+        <div class="loading" ng-show="isProfileLoading">
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+        </div>
+        <div>
+
+        </div>
+        <div class="has-feedback">
+            <div class=" form-group  col-md-8 ">
+                <input type="text" class="form-control col-md-5" placeholder="Buscar Especie" ng-model="searchText"> </input>
+                <span class="glyphicon glyphicon-search form-control-feedback" style="margin: -5px 10px 10px 10px;float: left; "></span>
+            </div class="form-group col-md-4 col-md-offset-0">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addModal" ng-click="openAddModal()">Agregar Nueva especie</button>
+            </div>
+        </div>
+
+        <h3>Listado de todas las especies</h3>
+        <!--   <div>
+        <p ng-show="especies.length==0" class="text-danger">no exite ninguna expecie!</p>
+      </div>-->
+        <table id="especies_table" class="table table-bordered table-responsive table-hover table-striped table-condensed">
+            <thead>
+                <tr class="success">
+                    <th>Nombre Científico</th>
+                    <th>Familia</th>
+                    <th>Nombre Comun</th>
+                    <th>Nombre Lengua Nativa</th>
+                    <!--<th>Imagen</th>-->
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="especie in especies | orderBy:'especie_nombrecientifico' |filter:searchText">
+                    <td>{{especie.especie_nombrecientifico}}</td>
+                    <td>{{especie.especie_familia}}</td>
+                    <td>{{especie.especie_nombrecomun}}</td>
+                    <td>{{especie.especie_nombrelenguanativa}}</td>
+                    <!--<td><img ng-src="data:image/jpeg;base64,{{especie._attachments["character.jpg"].length}}" data-err-src="images/png/avatar.png"/></td>-->
+                    <!-- <td>{{especie.especie_imagen}}</td>-->
+                    <td><button class="btn btn-warning" data-toggle="modal" data-target="#addModal" ng-click="procesaEspecie(especie)">Editar</button></td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="deleteEspecie(especie)">Eliminar</button>
+                        <!--<input type="submit" value="Eliminar" class="btn btn-xs btn-danger" ng-click="deleteEspecie(especie)">-->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" ng-show="especies.length==0">
+                        <small><i>no exite ninguna expecie!</i></small>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Especies</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <label>Nombre científico</label>
+                            <input required class="form-control" ng-model="especie.especie_nombrecientifico">
+
+                            <label>Familia</label>
+                            <input required class="form-control" ng-model="especie.especie_familia">
+
+                            <label>Nombre Común</label>
+                            <input required class="form-control" ng-model="especie.especie_nombrecomun">
+
+                            <label>Nombre en Quechua</label>
+                            <input required class="form-control" ng-model="especie.especie_nombrelenguanativa">
+
+                            <label>Imagen</label>
+                            <!--<label for="especie._attachments">Seleccione imagen</label>-->
+
+                            <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" />
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <!--<th>base64</th>-->
+                                    <th>imagen (jpg)</th>
+                                </tr>
+                                <tr ng-show="especie._attachments">
+                                    <!--<td>{{img.substring(22)}}</td>-->
+                                    <td><img class="thumb" ng-src="{{especie._attachments}}" height=60px; width=80px/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" ng-show="!especie._attachments">
+                                        <small color="red"><i >Para poder agregar debe selccionar una imagen en formato jpg menos a 1.2 Mb.</i></small>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="addBtn" ng-click="saveEspecie()" data-dismiss="modal" ng-show="showAddBtn" ng-disabled="!img">Agregar</button>
+                        <button class="btn btn-info" id="updateBtn" ng-click="saveEspecie()" data-dismiss="modal" ng-show="showUpdateBtn">Actualizar</button>
+                        <!--<button class="btn btn-info" id="clearBtn" ng-click="eliminar()">Eliminar</button>-->
+                        <button class="btn btn-default" id="closeBtn" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

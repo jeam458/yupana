@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Andes org</title>
+  <link rel="stylesheet" href="/css/app.css"/>
+  <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/css/datepicker.css"/>
+  <link rel="stylesheet" href="/lib/toastr/toastr.css"/>
+  <link href="//fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,600" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+  <link href="//cdn.jsdelivr.net/animatecss/3.2.0/animate.css" rel="stylesheet">
+  <link href="/css/angular-toastr.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+  <link href="/lib/angular-multi-select/dist/prod/angular-multi-select.min.css" rel="stylesheet">
+  <!--<link href="/lib/leaflet-polylinedecorator/src/leaflet.css" rel="stylesheet">-->
+  <link rel="stylesheet" href="/css/rdash.css">
+
+  <!--<link rel="stylesheet" href="/css/bootstrap-combined.min.css">-->
+  
+
+
+</head>
+<body ng-init="username='{{username}}'">
+  
+  <div class="page-load-spinner">
+  <div class="sk-folding-cube">
+    <div class="sk-cube1 sk-cube"></div>
+    <div class="sk-cube2 sk-cube"></div>
+    <div class="sk-cube4 sk-cube"></div>
+    <div class="sk-cube3 sk-cube"></div>
+  </div>
+</div>
+
+<div>
+  <nav class="navbar navbar-default " role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href=""><i><img src="logo-andes.png" class="img"style="margin: -10px 20px 0px 0px;float: left; " height=40px; width=200px></i></a>
+      </div>
+
+      <div  id="bs-example-navbar-collapse-1" class="collapse navbar-collapse" >
+        <ul class="nav navbar-nav">
+          <!--<li ng-show="loggedIn" class="{{recordsActive}}" ng-class="recordsActive"><a href="#/records" >recods</a></li>-->
+         <!-- <li ng-show="loggedIn" ng-class="setupActive"><a href="#/setup">Mantenimientos</a> </li>-->
+         <li class="active"><a href="/#/principal">Principal</a></li>
+         <li ng-show="loggedIn" ><a href="#/etnobotacias" >Fichas Etnobotanicas</a></li>
+         <li ng-show="loggedIn" ><a href="#/transectos" >Transectos</a></li>
+           <li class="dropdown" ng-show="loggedIn">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">Mantenimientos
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              <li><a href="#/especies">Especies</a></li>
+              <li><a href="#/partesUsadas">Partes Usadas</a></li>
+              <li><a href="#/formasuso">Formas de uso</a></li>
+              <li><a href="#/tiposvegetacion">Tipos de vegetación</a></li>
+              <li><a href="#/formasbiologicas">Formas Biológicas</a></li>
+              </ul>
+            </li>
+          <!--<li ng-show="loggedIn" ng-class="reportsActive"><a href="#reports/stock" >Reportes</a></li>-->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li ng-show="loggedIn" ng-class="usersActive"><a href="#/users">Crear Usuarios</a></li>
+          <li ng-show="loggedIn"><a href="#/logout" >Salir</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li ng-show="!loggedIn"><a href="#/login">Ingresar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  </div>
+
+  <div ui-view style="margin-top:35px;margin-bottom: 50px;" ng-view>
+  </div>
+
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
+
+
+
+
+
+<script src="/lib/angular/angular.js"></script>
+<script src="/lib/angular/angular-resource.min.js"></script>
+<script src="/lib/angular/angular-cookies.js"></script>
+<script src="/lib/angular/angular-route.js"></script>
+<!--<script src="/js/jquery-1.10.2.min.js"></script>-->
+<script src="/lib/jquery-1.11.0.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+<script src="/lib/ng-table.min.js"></script>
+<!--<script src="/lib/angular.js"></script>-->
+<script src="/lib/angular-toastr.js"></script>
+<!--<script src="/lib/leaflet-polylinedecorator/src/leaflet.js"></script>
+<script src="/lib/leaflet-polylinedecorator/leaflet.polylineDecorator.js"></script>-->
+<script src="/lib/angular-gm.js"></script>
+<script type="text/javascript" src="/lib/toastr/toastr.js"></script>
+<!--<script src="/lib/angular-toastr.tpls.js"></script>-->
+<script src="/js/angular-base64-upload.js"></script>
+<script src="/js/angular-multi-select.js"></script>
+<script src="/js/convertirutm.js"></script>
+
+
+<script type="text/javascript" src="/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+<script type="text/javascript" src="/lib/angular-jwt/dist/angular-jwt.min.js"></script>
+<!--<script type="text/javascript" src="/lib/angular-multi-select/dist/prod/angular-multi-select.js"></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsNyjwdFd8l6xeQVOhZJT_y5MTrnO2VS0"></script>
+
+
+<script src="/js/app.js"></script>
+<script src="/js/services.js"></script>
+<!--<script src="/js/dashboard.js"></script>-->
+<script src="/js/controllers.js"></script>
+<script src="/js/googleMapService.js"></script>
+<!--<script src="/js/especies.js"></script>-->
+
+<!--<script src="/js/etnobotacias.js"></script>-->
+<script src="/js/filters.js"></script>
+<script src="/js/directives.js"></script>
+<script src="/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+ 
+ 
+
+
+
+<script type="text/javascript">
+  $(window).load(function () {
+    $(".page-load-spinner").fadeOut("slow");
+  })
+  $(document).on('click', '.navbar-collapse.in', function (e) {
+    if ($(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle') {
+      $(this).collapse('hide');
+    }
+  });
+</script>
+<script type="text/javascript">
+// Add your javascript here
+$(function() {
+  $("h1").animate({
+    "margin-left": "100px"
+  }, "slow");
+
+  $(".nav li").on("click", function() {
+    $(".nav li").removeClass("active");
+    $(this).addClass("active");
+  });
+  $(".a li").on("click",function(){
+    $(".a li").removeClass("active");
+    $(this).addClass("active");
+  });
+
+});
+</script>
+<script type="text/javascript">
+$('body').scrollspy({
+  target: '.bs-docs-sidebar',
+  offset: 40
+});
+</script>
+
+
+</body>
+</html>

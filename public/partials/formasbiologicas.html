@@ -1,0 +1,32 @@
+<div class="col-md-7">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Lista de las formas biologicas</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <p ng-show="formasbiologicas.length==0" class="text-danger">no exisite ninguna forma biológica!</p>
+      </div>
+      <div ng-show="formasbiologicas.length!=0">
+       <table id="formasbiologicas_table" class="table table-bordered">
+         <thead>
+           <th>Forma Biologica</th>
+           <th>Eliminar</th>
+         </thead>
+         <tbody>
+          <tr ng-repeat = "formabiologica in formasbiologicas">
+            <td>{{formabiologica.formabiologica_name}}</td>
+            <td>
+              <input type="submit" value="Eliminar" class="btn btn-xs btn-danger" ng-click="deleteFormabiologica(formabiologica)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="col-md-5" ng-include src="'partials/add_formabiologica.html'">
+
+</div>

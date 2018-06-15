@@ -1,0 +1,407 @@
+<div class="container col-md-12 col-md-offset-0">
+
+<div class="col-sm-3 ">
+  <button  class="btn btn-success btn-block" data-toggle="modal" data-target="#addEtnoModal" ng-click="openAddModal()">Ficha Etnobotánica</button>
+</div><br><br><br>
+<div class="row">
+  <div class="col-lg-12">
+    
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h3 class="panel-title">Muestreos Puntuales</h3>
+
+      </div>
+      
+      <div class="panel-body">
+
+        <div class="well" >
+             
+          <form class="form form-inline" role="form">
+            <div class="form-group input-group-sm">
+              <label for="especies">Especie</label>
+              <select id="especies" ng-model="filter.especie" class="form-control">
+                <option value="All" selected>All</option>
+                <option ng-repeat="p in especies" value="{{p.especie_nombrecientifico}}">{{p._id}}</option>
+              </select>
+            </div>
+            <!--<div class="form-group input-group-sm">
+              <label for="customer">Customer</label>
+              <select id="customer" ng-model="filter.customer_id" class="form-control">
+                <option selected="selected" value="All">All</option>
+                <option ng-repeat="c in customers" value="{{c._id}}">{{c.customer_name}}</option>
+              </select>
+            </div>-->
+            <div class="form-group input-group-sm">
+              <label>Desde</label>
+              <p class="input-group input-group-sm">
+                <input ng-model = "filter.startDate" class="form-control" data-date-format="mm/dd/yyyy" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFilterStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+
+            <div class="input-group input-group-sm">
+              <label>Hasta</label>
+              <p class="input-group input-group-sm">
+                <input ng-model = "filter.endDate" class="form-control" datepicker-popup="dd/MM/yyyy" is-open="endOpened" ng-required="true" close-text="Close">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFilterEnd($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            <button class="btn btn-info" ng-click="filterRecords()">Filtrar</button>
+          </form>
+        </div>
+        <div class="loading" ng-show="isProfileLoading">
+       <div class="loading-bar"></div>
+       <div class="loading-bar"></div>
+       <div class="loading-bar"></div>
+       <div class="loading-bar"></div>
+        </div> 
+        <div>
+          <p ng-show="etnobotanicas.length==0" class="text-danger">no tenemos ninguna ficha etnobotanica de {{filter.especie}}</p>
+        </div>
+        <div ng-show="etnobotanicas.length!=0">
+          <table id="etnobotanicas_table" ng-table class="table table-bordered table-hover table-striped table-condensed">
+           <thead>
+             <th>Fecha</th>
+             <th>Especie</th>
+             <th>Coordenadas</th>
+             <th>Editar</th>
+             <th>Eliminar</th>
+           </thead>
+           <tbody>
+            <tr ng-repeat = "etno in etnobotanicas">
+              <td >{{etno.fecha.substring(0, 10)}}</td>
+              <td>{{etno.especie}}</td>
+              <td>{{etno.lat}}, {{etno.lng}}</td>
+              <td><button class="btn btn-warning" data-toggle="modal" data-target="#addEtnoModal" ng-click="procesaEtno(etno)">Editar</button></td>
+              <td>
+                <button class="btn btn-danger" ng-click="deleteEtno(etno)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal --> 
+<div  class="modal fade " id="addEtnoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>     
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ficha Etnobotánica</h3>
+            </div>
+            <div class="panel-body">  
+                <div class="row">
+                <div class="col-md-6 col-md-offset-0"> 
+                  <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                  <h3 class="panel-title">UBICACIÓN</h3>
+                  </div>                   
+                  
+	                	<div class="form-group">
+                      
+	                		<div id="googleMap1"></div>
+                      
+	                	</div>
+
+                  <div class="panel-heading"> 
+                  <h3 class="panel-title">GENERAL</h3>
+                  </div> 
+                  <div class="panel-body">
+                <div class="form-group">
+                    <label class="control-label" >Zona UTM</label>
+                    <input class="form-control" placeholder="Zona UTM"  ng-model="etnobotanica.utmzona" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Coordenada X UTM</label>
+                    <input type="Number" class="form-control" placeholder="Coordenada X UTM"  ng-model="etnobotanica.utmx" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Coordenada Y UTM</label>
+                    <input type="Number" class="form-control" placeholder="Coordenada Y UTM"  ng-model="etnobotanica.utmy" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Altitud</label>
+                    <input type="Number" class="form-control" placeholder="Altitud"  ng-model="etnobotanica.altitud" required>
+                </div>
+
+                 <div class="form-group">
+                    <label>Especie</label>
+                    <select  class="form-control" required ng-model="etnobotanica.especie" ng-options="especie.especie_nombrecientifico as especie.especie_nombrecientifico for especie in especies">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo Vegetación</label>
+                    <select class="form-control" required ng-model="etnobotanica.vegetacion" ng-options="tipo.tipovegetacion_name as tipo.tipovegetacion_name for tipo in tiposvegetacion">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Lugar donde se encontro</label>
+                    <input class="form-control" placeholder="lugar donde se encontro"  ng-model="etnobotanica.lugarencontrado" required>
+                </div>
+                 <div class="form-group">
+                    <label>Descripción del entorno</label>
+                    <textarea ng-model="etnobotanica.entorno" placeholder="descripción" class="form-control" col="30"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Tipo de Suelo</label>
+                    <input class="form-control" placeholder="tipo de suelo"  ng-model="etnobotanica.tiposuelo" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Forma Biológica</label>
+                    <select class="form-control" required ng-model="etnobotanica.formabiologica" ng-options="forma.formabiologica_name as forma.formabiologica_name for forma in formasbiologicas">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" >Altura (cm)</label>
+                    <input type="Number" class="form-control" placeholder="Altura"  ng-model="etnobotanica.altura" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Ciclo de Vida</label>
+                    <select class="form-control" required ng-model="etnobotanica.ciclovida" ng-options="ciclo as ciclo for ciclo in ciclos">
+                    </select>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+                <div class="col-md-6 col-md-offset-0">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                  <h3 class="panel-title">MORFOLOGÍA</h3>
+                  </div>
+                <div class="panel-body">
+                 <div class="form-group">
+                    <label class="control-label" >Raiz</label>
+                    <input  class="form-control" placeholder="Raiz"  ng-model="etnobotanica.raiz" required>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" >Tallo</label>
+                    <input  class="form-control" placeholder="Tallo"  ng-model="etnobotanica.tallo" required>
+                </div>
+                 <div class="form-group">
+                    <label class="control-label" >Hojas</label>
+                    <input  class="form-control" placeholder="Hojas"  ng-model="etnobotanica.hojas" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Flor</label>
+                    <input  class="form-control" placeholder="Flor"  ng-model="etnobotanica.flor" required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" >Fruto</label>
+                    <input  class="form-control" placeholder="Fruto"  ng-model="etnobotanica.fruto" required>
+                </div>
+                <div class="form-group">
+                   <label class="control-label" >Semilla</label>
+                   <input  class="form-control" placeholder="Semilla"  ng-model="etnobotanica.semilla" required>
+                </div>
+                <div class="form-group">
+                    <label>Se Cultiva</label>
+                    <select class="form-control" required ng-model="etnobotanica.secultiva" ng-options="cultiva as cultiva for cultiva in secultiva">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Se Maneja</label>
+                    <select class="form-control" required ng-model="etnobotanica.semaneja" ng-options="maneja as maneja for maneja in semaneja">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Se Tolera</label>
+                    <select class="form-control" required ng-model="etnobotanica.setolera" ng-options="tolera as tolera for tolera in setolera">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Crece sola</label>
+                    <select class="form-control" required ng-model="etnobotanica.creceSola" ng-options="sola as sola for sola in crecesola">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <textarea ng-model="etnobotanica.observaciones" placeholder="Observaciones" class="form-control" col="300"></textarea>
+                </div>
+                </div>
+                  <div class="panel-heading">
+                  <h3 class="panel-title">DATOS DEL COLECTOR</h3>
+                  </div>
+                  <div class="panel-body">
+                  <div class="form-group">
+                    <label>Nombre del experto Comunitario</label>
+                    <input type="text"  class="form-control" placeholder="Experto"  ng-model="etnobotanica.experto" required>
+                 </div>
+                 <div class="form-group">
+                   <label class="control-label" >Edad</label>
+                   <input type="Number"  class="form-control" placeholder="Edad"  ng-model="etnobotanica.edad" required>
+                </div>
+                <div class="form-group">
+                    <label>Sexo</label>
+                    <select class="form-control" required ng-model="etnobotanica.sexo" ng-options="sexo as sexo for sexo in sexos">
+                    </select>
+                </div>
+                <div class="form-group input-group-sm">
+              <label class="control-label">Fecha de colecta</label>
+              <p class="input-group input-group-sm">
+                <input ng-model = "etnobotanica.fecha" class="form-control" data-date-format="mm/dd/yyyy" datepicker-popup="dd/MM/yyyy" is-open="startOpened" ng-required="true" close-text="Close">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFilterStart($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+               </p>
+              </div>
+                <div class="form-group">
+                   <label class="control-label" >Nro Colecta</label>
+                   <input type="Number"  class="form-control" placeholder="Nro de colecta"  ng-model="etnobotanica.colecta" disabled>
+                </div>
+                <div class="form-group">
+                   <label class="control-label" >Duplicados</label>
+                   <input type="Number"  class="form-control" placeholder="Duplicados"  ng-model="etnobotanica.duplicado" disabled>
+                </div>
+               
+                  </div>
+                </div>
+                </div>
+
+                <div class="col-md-4 col-md-offset-0">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                  <h3 class="panel-title">CURADOR Y LOCALIDAD</h3>
+                  </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                   <label class="control-label" >Nombre del curador</label>
+                   <input   class="form-control" placeholder="Curador"  ng-model="etnobotanica.curador" required>
+                </div>
+                   <div class="form-group">
+                   <label class="control-label" >Nombre herbario comunidad</label>
+                   <input   class="form-control" placeholder="Herbario de la comunidad"  ng-model="etnobotanica.herbario" required>
+                </div>
+                
+                <div class="form-group">
+                   <label class="control-label" >País</label>
+                   <input   class="form-control" placeholder="País"  ng-model="etnobotanica.pais" required>
+                </div>
+                <div class="form-group">
+                   <label class="control-label" >Departamento</label>
+                   <input   class="form-control" placeholder="Departamento"  ng-model="etnobotanica.departamento" required>
+                </div>
+                <div class="form-group">
+                   <label class="control-label" >Provincia</label>
+                   <input   class="form-control" placeholder="Provincia"  ng-model="etnobotanica.provincia" required>
+                </div>
+                <div class="form-group">
+                   <label class="control-label" >Distrito</label>
+                   <input   class="form-control" placeholder="Distrito"  ng-model="etnobotanica.distrito" required>
+                </div>
+                <div class="form-group">
+                   <label class="control-label" >Localidad</label>
+                   <input   class="form-control" placeholder="Localidad"  ng-model="etnobotanica.localidad" required>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+                <div class="col-md-8 col-md-offset-0">  
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                 <h3 class="panel-title">PARTES Y FORMAS DE USO</h3>
+                </div>
+                <div class="panel-body">
+                <div class="form-group">
+                   <label>Parte usada</label>
+                   <select  class="form-control" required ng-model="ParteUsada.parteUsada" ng-options="parte.parteusada_name as parte.parteusada_name for parte in partesusadas0">
+                   </select>
+                </div>
+                           <div class="form-group">
+                            <label>Formas de uso</label>
+                            <input type="text" class="form-control col-md-5" placeholder="Buscar Forma de uso" ng-model="searchText"> </input>
+
+                            <select  class="form-control" required ng-model="ParteUsada.formasUso" multiple>
+                            <option ng-value="forma.formauso_name +': '+ forma.formauso_descripcion" ng-repeat = "forma in formasuso | orderBy:'formauso_name'|filter:searchText" >Forma uso: {{forma.formauso_name}}, Descripción: {{forma.formauso_descripcion}}</option>
+                            </select>
+                            <h4>Parte usada: {{ParteUsada.parteUsada}}</h4>
+                            <p>Formas de uso: {{ParteUsada.formasUso}}</p>
+
+                            <button class="btn btn-primary" id="addBtn" ng-click="addformaU(ParteUsada)"   ng-show="showAddBtn">Agregar</button>
+                            <button class="btn btn-info" id="updateBtn" ng-click="modificar(ParteUsada)"   ng-show="showUpdateBtn">Actualizar</button>
+                            <!--<button class="btn btn-info" id="clearBtn" ng-click="eliminar(ParteUsada)" ng-show="showDeleteBtn">Eliminar</button>-->
+                            <button class="btn btn-default" id="closeBtn" ng-click="cancelar()">Cancelar</button>
+                           </div>
+                         
+                           
+                          <!--<button type="button"   class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Parte usada</button>-->
+                
+                 
+                  <table id="formasparteuso" class="table table-bordered table-responsive ">
+                  <thead>
+                    <tr class="success">
+                           <th>Parte Usada</th>
+                           <th>Forma de Uso</th>
+                           <th>Editar</th>
+                           <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat = "parteusada in partesusadas | orderBy:'parteUsada' |filter:searchText">
+                            <td>{{parteusada.parteUsada}}</td>
+                            <td>
+                              <table class="table table-bordered table-responsive">
+                                <tbody>
+                                  <tr ng-repeat="formauso in parteusada.formasUso">
+                                   <td>{{formauso}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                            <!--<td><img ng-src="data:image/jpeg;base64,{{especie._attachments["character.jpg"].length}}" data-err-src="images/png/avatar.png"/></td>-->
+                           <!-- <td>{{especie.especie_imagen}}</td>-->
+                            <td><button class="btn btn-warning" ng-click="procesaformaU(parteusada)">Editar</button></td>
+                            <td>
+                              <button class="btn btn-danger" ng-click="eliminar(parteusada)">Eliminar</button>
+                              <!--<input type="submit" value="Eliminar" class="btn btn-xs btn-danger" ng-click="deleteEspecie(especie)">-->
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" ng-show="partesusadas.length==0">
+                          <small><i>no exite ninguna expecie!</i></small>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                
+            </div>
+             <div class="modal-footer">
+                 <input value="Agregar" type="submit" class="btn btn-primary" ng-click="saveEtno()" data-dismiss="modal" ng-show="showAddBtn1" ng-disabled="!etnobotanica.fecha">
+                 <input value="Actualizar" type="submit" class="btn btn-info" ng-click="actualizarEtno()" data-dismiss="modal" ng-show="showUpdateBtn1">
+                 <input value="cerrar" type="submit" class="btn btn-primary" data-dismiss="modal" >
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Modal -->
+                  

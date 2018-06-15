@@ -1,0 +1,61 @@
+
+<div class=" container col-md-10 col-md-offset-1">
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Registrar nuevo usuario</h3>
+
+      </div>
+      
+      <div class="panel-body">
+	<div class="form-group">
+		<label>Username</label>
+		<input ng-model="fuser.name" class="form-control">
+	</div>
+	<div class="form-group">
+		<label>Password</label>
+		<input type="password" ng-model="fuser.password" class="form-control">
+	</div>
+	<div class="form-group">
+		<label>Nombres</label>
+		<input  ng-model="fuser.nombres" class="form-control">
+	</div>
+	<div class="form-group">
+		<label>Apellidos</label>
+		<input  ng-model="fuser.apellidos" class="form-control">
+	</div>
+	<div class="form-group">
+		<label>Año de nacimiento</label>
+		<input type="Number"  ng-model="fuser.anionacimiento" class="form-control">
+	</div>
+	<div class="form-group">
+      <label>Sexo</label>
+      <select class="form-control" required ng-model="fuser.sexo" ng-options="sex as sex for sex in sexo">
+      </select>
+    </div>
+	<div class="form-group">
+      <label>Roles</label>
+      <select  required ng-model="fuser.roles" class="selectpicker" multiple ng-options="rol as rol for rol in roless">
+      </select>
+    </div>
+	<div class="form-group">
+		<label>Correo</label>
+		<input  ng-model="fuser.correo" class="form-control">
+	</div>
+	<div class="form-group">
+		<label>Número telefónico</label>
+		<input  ng-model="fuser.nro" class="form-control">
+	</div>
+	<button class="btn btn-primary" ng-click="saveUser()">Create User</button>
+	
+<div class="col-md-5">
+<ul>
+<li ng-repeat="fuser in users">{{fuser.username}}</li>
+</ul>
+</div>
+      </div>
+    </div>
+	</div>
+	</div>
+	</div>

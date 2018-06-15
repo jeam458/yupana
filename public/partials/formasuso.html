@@ -1,0 +1,34 @@
+<div class="col-md-7">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Lista de las formas de uso</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <p ng-show="formasuso.length==0" class="text-danger">no exite ninguna forma de uso!</p>
+      </div>
+      <div ng-show="formasuso.length!=0">
+       <table id="formasuso_table" class="table table-bordered">
+         <thead>
+           <th>Forma de uso</th>
+           <th>Descripción</th>
+           <th>Eliminar</th>
+         </thead>
+         <tbody>
+          <tr ng-repeat = "formauso in formasuso">
+            <td>{{formauso.formauso_name}}</td>
+            <td>{{formauso.formauso_descripcion}}</td>
+            <td>
+              <input type="submit" value="Eliminar" class="btn btn-xs btn-danger" ng-click="deleteFormaUso(formauso)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="col-md-5" ng-include src="'partials/add_formauso.html'">
+
+</div>
