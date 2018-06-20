@@ -8,7 +8,7 @@ var connection = new(cradle.Connection)(config.couchdb.baseUrl, config.couchdb.p
 });
 
 var db = connection.database(config.couchdb.databaseName);
-
+//var db=config.couchdb.url;
 exports.database = db;
 
 exports.save = function(record, callback) {
