@@ -131,7 +131,7 @@ controller('LoginCtrl', function($scope, $rootScope, $location, SessionService, 
     console.log($scope.especies.length);
     console.log(Especie.query());
     $scope.especie = { "_id": '', "especie_nombrecientifico": '', "especie_familia": '', "especie_nombrecomun": '', "especie_nombrelenguanativa": '', "type": '', "_attachments": '' };
-    $scope.type='especie';
+    $scope.especie.type='especie';
     /*zona especies */
     /*leer los archivos */
     $scope.especie1 = [];

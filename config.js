@@ -2,10 +2,10 @@ var config = {
 	couchdb:{}
 };
 
- config.couchdb.url='http://54.89.198.88/andesprimero';
- //config.couchdb.url = 'http://127.0.0.1:5984/andesprimero';
- config.couchdb.baseUrl='http://54.89.198.88'; 
- //config.couchdb.baseUrl = 'http://127.0.0.1';
+ //config.couchdb.url='http://54.89.198.88/andesprimero';
+ config.couchdb.url = 'http://127.0.0.1:5984/andesprimero';
+ //config.couchdb.baseUrl='http://54.89.198.88'; 
+ config.couchdb.baseUrl = 'http://127.0.0.1';
  config.couchdb.databaseName = 'andesprimero';
  config.couchdb.port = 5984;
  config.couchdb.username = 'admin';
