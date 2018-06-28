@@ -130,7 +130,11 @@ controller('LoginCtrl', function($scope, $rootScope, $location, SessionService, 
     $scope.especies = Especie.query();
     console.log($scope.especies.length);
     console.log(Especie.query());
+<<<<<<< HEAD
     $scope.especie = { "_id": '', "especie_nombrecientifico": '', "especie_familia": '', "especie_nombrecomun": '', "especie_nombrelenguanativa": '', "type": '', "_attachments": '' };
+=======
+    $scope.especie = { "_id": '', "especie_nombrecientifico": '', "especie_familia": '', "especie_nombrecomun": '', "especie_nombrelenguanativa": '', "type":'', "_attachments": '' };
+>>>>>>> e97e73b49135ebb352cec0c800a341efbf5548a0
     $scope.especie.type='especie';
     /*zona especies */
     /*leer los archivos */

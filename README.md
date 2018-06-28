@@ -1,3 +1,3 @@
-# GTS Inventory Manager
+# Yupana server
 
-An inventory management system built to practice AngularJS, Node.JS(Express framework) & CouchDB.
+An server management system built to practice AngularJS, Node.JS(Express framework) & CouchDB.
