@@ -14,9 +14,11 @@ router.get('/', function(req, res) {
 
 router.post('/user', function(req, res) {
     users.insert(req.body, req.body.id, function(error, docs) {
+        console.log('los datos: '+ docs)
         if (error) {
             res.json({ usuario: "" });
         } else {
+           
             //console.log('saved ' + 'err ' + JSON.stringify(error) + ' docs ' + JSON.stringify(docs));
             res.json({ usuario: docs });
         }
@@ -30,7 +32,7 @@ router.get('/user', function(req, res) {
             res.send("error")
         } else {
             res.json(docs)
-            console.log(docs);
+            //console.log(docs);
         }
     })
 })

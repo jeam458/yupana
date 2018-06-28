@@ -20,10 +20,14 @@ exports.database = db;
 			else callback(null, result);
 	});
 };*/
-exports.insert= function(user,callback){
+exports.insert= function(user,params,callback){
     _users.insert(user,user.id, function(err, body) {
-  if (err) console.log(err);
-   console.log(body);  
+	 if (err) {console.log(err);
+	           callback(err)}
+	 else{
+		console.log(body);
+		callback(null,body);
+	 }
     });
 };
 
